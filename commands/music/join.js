@@ -26,6 +26,7 @@ class Join extends Command{
 			channel.join()
 			.then(connection => {
 				console.log('Connected!');
+				message.reply("sup dood");
 				vars.voice_connection = connection;
 			}).catch(console.error);
 		}catch(ex){

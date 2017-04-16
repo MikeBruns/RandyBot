@@ -16,7 +16,7 @@ class Queue extends Command{
 	}
 
 	async run(message, args){
-		if(misc_funcs.isIgnored) return;
+		if(misc_funcs.isIgnored(message.author)) return;
 
 		var response = "";
 

@@ -2,7 +2,7 @@ const { Command } = require('discord.js-commando');
 
 const vars = require('../../vars');
 
-
+//Broken AS FUCK right now.
 class Ignore extends Command{
 	constructor(client){
 		super(client, {

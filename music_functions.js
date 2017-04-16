@@ -98,7 +98,7 @@ var add_to_queue = function(video, message, mute = false){
 }
 
 var search_video = function(message, query){
-	request("https://www.googleapis.com/youtube/v3/search?part=id&type=video&order=viewCount&q=" + encodeURIComponent(query) + "&key=" + vars.youtube_key, (error, response, body) =>{
+	request("https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=" + encodeURIComponent(query) + "&key=" + vars.youtube_key, (error, response, body) =>{
 		var json = JSON.parse(body);
 		if("error" in json){
 			message.reply("Send Help! " + json.error.errors[0].message + " - " + json.error.errors[0].reason);
