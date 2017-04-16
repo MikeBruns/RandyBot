@@ -1,4 +1,5 @@
 const vars = require('./vars');
+const api_keys = require("./api_keys");
 const ytdl = require("ytdl-core");
 const request = require("request");
 
@@ -55,7 +56,7 @@ var play_next_song = function() {
 }
 
 var queue_playlist = function(playlistId, message, pageToken = ''){
-	request("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistId + "&key=" + vars.youtube_key + "&pageToken=" + pageToken, (error, response, body) => {
+	request("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" + playlistId + "&key=" + api_keys.youtube_key + "&pageToken=" + pageToken, (error, response, body) => {
 		var json = JSON.parse(body);
 		if("error" in json){
 			message.reply("Send Help! " + json.error.errors[0].message + " - " + json.error.errors[0].reason);
@@ -98,7 +99,7 @@ var add_to_queue = function(video, message, mute = false){
 }
 
 var search_video = function(message, query){
-	request("https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=" + encodeURIComponent(query) + "&key=" + vars.youtube_key, (error, response, body) =>{
+	request("https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=" + encodeURIComponent(query) + "&key=" + api_keys.youtube_key, (error, response, body) =>{
 		var json = JSON.parse(body);
 		if("error" in json){
 			message.reply("Send Help! " + json.error.errors[0].message + " - " + json.error.errors[0].reason);

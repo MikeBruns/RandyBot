@@ -3,6 +3,7 @@
 const commando = require('discord.js-commando');
 const ytdl = require("ytdl-core");
 const vars = require('./vars');
+const api_keys = require('./api_keys');
 
 randy = new commando.Client({
 	commandPrefix: '/',
@@ -34,7 +35,7 @@ randy.on('message', (message) => {
 });
 */
 
-randy.login('MzAyOTA5MDY5MDUwNjQyNDMy.C9QZmw.j_bXtik48e6cetajgRatINi9Sk0');
+randy.login(api_keys.disc_key);
 
 //youtube api key = AIzaSyDR6HmSoTCv6qZykcs3B-AbRM41AWfMbCE
 /*
