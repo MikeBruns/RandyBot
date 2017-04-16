@@ -20,18 +20,24 @@ class Queue extends Command{
 
 		var response = "";
 
-		if(mus_funcs.is_queue_empty()){
-			response = "Nothing in the queue atm.";
-		}else{
-			var long_queue = vars.queue.length > 30;
-			for(var i = 0; i < (long_queue ? 30 : vars.queue.length); i++){
-				response +=  "\"" + vars.queue[i]["title"] + "\" (requested by " + vars.queue[i]["user"] + ")\n";
+		try{
+
+			if(mus_funcs.is_queue_empty()){
+				response = "Nothing in the queue atm.";
+			}else{
+				var long_queue = vars.queue.length > 30;
+				for(var i = 0; i < (long_queue ? 30 : vars.queue.length); i++){
+					response +=  "\"" + vars.queue[i]["title"] + "\" (requested by " + vars.queue[i]["user"] + ")\n";
+				}
+
+				if(long_queue) response += "\n**...and " + (vars.queue.length - 30) + " more.**";
 			}
 
-			if(long_queue) response += "\n**...and " + (vars.queue.length - 30) + " more.**";
-		}
+			message.reply(response);
 
-		message.reply(response);
+		}catch(ex){
+			console.log(ex.stack);
+		}
 	}
 }
 

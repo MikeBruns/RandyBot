@@ -18,14 +18,20 @@ class Stop extends Command{
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 		
-		if(vars.stopped){
-			message.reply("No music is currently playing");
-		}else{
-			vars.stopped = true;
-			if(vars.voice_handler !== null){
-				vars.voice_handler.end();
+		try{
+
+			if(vars.stopped){
+				message.reply("No music is currently playing");
+			}else{
+				vars.stopped = true;
+				if(vars.voice_handler !== null){
+					vars.voice_handler.end();
+				}
+				message.reply("Stopping!");
 			}
-			message.reply("Stopping!");
+
+		}catch(ex){
+			console.log(ex.stack);
 		}
 	}
 }

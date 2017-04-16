@@ -27,18 +27,24 @@ class SetNP extends Command{
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 		
-		const text = args.text;
-		if(text.toLowerCase() == "on"){
-			var response = "Will announce song names in chat now dood";
-			vars.inform_np = true;
-		}else if (text.toLowerCase() == "off"){
-			var response = "Will no longer announce song names in chat dood";
-			vars.inform_np = false;
-		}else{
-			var response = "BUT SIR!";
-		}
+		try{
 
-		message.reply(response);
+			const text = args.text;
+			if(text.toLowerCase() == "on"){
+				var response = "Will announce song names in chat now dood";
+				vars.inform_np = true;
+			}else if (text.toLowerCase() == "off"){
+				var response = "Will no longer announce song names in chat dood";
+				vars.inform_np = false;
+			}else{
+				var response = "BUT SIR!";
+			}
+
+			message.reply(response);
+
+		}catch(ex){
+			console.log(ex.stack);
+		}
 	}
 }
 

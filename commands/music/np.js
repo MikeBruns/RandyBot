@@ -22,14 +22,20 @@ class NP extends Command{
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 
-		var response = "Now playing: ";
-		if(mus_funcs.is_bot_playing()){
-			response += "\"" + vars.now_playing_data["title"] + "\" (requested by " + vars.now_playing_data["user"] + ")";
-		}else{
-			response += "nothing you dumb fuck.";
-		}
+		try{
 
-		message.reply(response);
+			var response = "Now playing: ";
+			if(mus_funcs.is_bot_playing()){
+				response += "\"" + vars.now_playing_data["title"] + "\" (requested by " + vars.now_playing_data["user"] + ")";
+			}else{
+				response += "nothing you dumb fuck.";
+			}
+
+			message.reply(response);
+
+		}catch(ex){
+			console.log(ex.stack);
+		}
 	}
 }
 

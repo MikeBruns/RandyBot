@@ -19,15 +19,21 @@ class Resume extends Command{
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 		
-		if(vars.stopped){
-			vars.stopped = false;
-			if(!mus_funcs.is_queue_empty()){
-				mus_funcs.play_next_song();
+		try{
+
+			if(vars.stopped){
+				vars.stopped = false;
+				if(!mus_funcs.is_queue_empty()){
+					mus_funcs.play_next_song();
+				}else{
+					message.reply("There isn't any music to play, dumbass.");
+				}
 			}else{
-				message.reply("There isn't any music to play, dumbass.");
+				message.reply("Music is already playing, dumbass.");
 			}
-		}else{
-			message.reply("Music is already playing, dumbass.");
+
+		}catch(ex){
+			console.log(ex.stack);
 		}
 	}
 }

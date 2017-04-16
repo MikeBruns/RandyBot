@@ -18,14 +18,20 @@ class Search extends Command{
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 		
-		if(vars.youtube_key === null){
-			message.reply("My Youtube API key isn't working... ayyyy");
-		}else{
-			var q = "";
-			for(var i = 1; i < args.length; i++){
-				q += args[i] + " ";
+		try{
+
+			if(vars.youtube_key === null){
+				message.reply("My Youtube API key isn't working... ayyyy");
+			}else{
+				var q = "";
+				for(var i = 1; i < args.length; i++){
+					q += args[i] + " ";
+				}
+				mus_funcs.search_video(message, q);
 			}
-			mus_funcs.search_video(message, q);
+
+		}catch(ex){
+			console.log(ex.stack);
 		}
 	}
 }

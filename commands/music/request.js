@@ -12,25 +12,38 @@ class Request extends Command{
 			group: 'music',
 			memberName: 'request',
 			description: 'Request a song/playlist',
-			examples: ['/request www.youtube.com/watch?v=asdlfkjasdf']
+			examples: ['/request www.youtube.com/watch?v=asdlfkjasdf'],
+			args: [{
+                key: 'text',
+                prompt: 'What text would you like the bot to play?',
+                type: 'string'
+            }]
 		})
 	}
 
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 		
-		if(vars.aliases.hasOwnProperty(args[1].toLowerCase())){
-			args[1] = aliases[params[1].toLowerCase()];
-		}
+		try{
 
-		var regExp = /^.*(youtu.be\/|list=)([^#\&\?]*).*/;
-        var match = args[1].match(regExp);
+			if(vars.aliases.hasOwnProperty(args.text.toLowerCase())){
+				args.text = aliases[args.text.toLowerCase()];
+			}
 
-        if(match && match[2]){
-        	mus_funcs.queue_playlist(match[2], message);
-        }else{
-        	mus_funcs.add_to_queue(args[1], message);
-        }
+			var regExp = /^.*(youtu.be\/|list=)([^#\&\?]*).*/;
+	        var match = args.text.match(regExp);
+
+	        //console.log(args.text);
+	        //console.log(match);
+	        if(match !== null && match && match[2]){
+	        	mus_funcs.queue_playlist(match[2], message);
+	        }else{
+	        	mus_funcs.add_to_queue(args.text, message);
+	        }
+
+    	}catch(ex){
+    		console.log(ex.stack);
+    	}
 	}
 }
 

@@ -19,14 +19,18 @@ class Join extends Command{
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 
-		const channel = message.member.voiceChannel;
-		vars.voice_channel = channel;
-		vars.text_channel = message;
-		channel.join()
-		.then(connection => {
-			console.log('Connected!');
-			vars.voice_connection = connection;
-		}).catch(console.error);
+		try{
+			const channel = message.member.voiceChannel;
+			vars.voice_channel = channel;
+			vars.text_channel = message;
+			channel.join()
+			.then(connection => {
+				console.log('Connected!');
+				vars.voice_connection = connection;
+			}).catch(console.error);
+		}catch(ex){
+			console.log(ex.stack);
+		}
 	}
 }
 

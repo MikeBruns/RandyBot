@@ -18,11 +18,17 @@ class Skip extends Command{
 	async run(message, args){
 		if(misc_funcs.isIgnored(message.author)) return;
 		
-		if(vars.voice_handler !== null){
-			message.reply("Cya nerd.");
-			vars.voice_handler.end();
-		}else{
-			message.reply("Nothing being played u tard.");
+		try{
+
+			if(vars.voice_handler !== null){
+				message.reply("BUT SIR.");
+				vars.voice_handler.end();
+			}else{
+				message.reply("Nothing being played u tard.");
+			}
+
+		}catch(ex){
+			console.log(ex.stack);
 		}
 	}
 }
