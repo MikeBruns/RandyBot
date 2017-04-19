@@ -41,6 +41,8 @@ class Request extends Command{
 	        	mus_funcs.add_to_queue(args.text, message);
 	        }
 
+	        message.reply("Thanks Thanks Thanks.");
+
     	}catch(ex){
     		console.log(ex.stack);
     	}

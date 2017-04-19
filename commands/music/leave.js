@@ -34,7 +34,7 @@ class Leave extends Command{
 			vars.inform_np = true;
 			vars.now_playing_data = {};
 
-			message.reply("Cya nerd.");
+			message.reply("Bye, have a nice time!");
 		}catch(ex){
 			console.log(ex.stack);
 		}
