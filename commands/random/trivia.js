@@ -37,7 +37,12 @@ class Trivia extends Command{
 				id = null;
 			}
 
-			trivia_funcs.get_trivia_q(message, id);
+			if (q !== null && id === null){
+				message.reply("Sir, use the right argument");
+			} else{
+				trivia_funcs.get_trivia_q(message, id);	
+			}
+			
 			
 		}catch(ex){
 			console.log(ex.stack);
