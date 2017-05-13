@@ -2,8 +2,17 @@ const vars    = require('./vars');
 const request = require("request");
 
 
-var get_trivia_q = function(message) {
-	request("https://opentdb.com/api.php?amount=1", (error, response, body) =>{
+var get_trivia_q = function(message, id) {
+	var request_q = '';
+
+	if(id == null){
+		request_q = "https://opentdb.com/api.php?amount=1";
+	} else { 
+		request_q = "https://opentdb.com/api.php?amount=1&category=" + id;
+		
+	}
+
+	request(request_q, (error, response, body) =>{
 		var json = JSON.parse(body);
 		if("error" in json){
 			message.reply("Send Help! " + json.error.errors[0] + " - " + json.error.errors[0].reason);

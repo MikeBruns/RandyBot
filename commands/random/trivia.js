@@ -11,7 +11,7 @@ class Trivia extends Command{
 			group: 'random',
 			memberName: 'trivia',
 			description: 'Random trivia question',
-			examples: ['/trivia']
+			examples: ['/trivia', '/trivia sports', '/trivia computers', '/trivia film']
 		})
 	}
 
@@ -20,11 +20,25 @@ class Trivia extends Command{
 			return;
 		
 		try{
-			// var q = "";
-			// for(var i = 1; i < args.length; i++){
-			// 	q += args[i] + " ";
-			// }
-			trivia_funcs.get_trivia_q(message);
+			var id = null;
+			var q  = '';
+
+			for(var i = 0; i < args.length; i++){
+				q += args[i];
+			}
+
+			if(q === 'sports'){
+				id = 21;
+			} else if(q === 'computers'){
+				id = 18;
+			} else if(q === 'film'){
+				id = 11;
+			} else {
+				id = null;
+			}
+
+			trivia_funcs.get_trivia_q(message, id);
+			
 		}catch(ex){
 			console.log(ex.stack);
 		}
